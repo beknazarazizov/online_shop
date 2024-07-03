@@ -4,6 +4,14 @@
   Bosh saxifa
 {% endblock %}
 {% block main_content %}
+    <div>{% if user.is_authenticated %}
+            <p>Hush kelibsiz  {{ user.username }}</p>
+            <p><a href="{% url 'logoutx' %}">Chiqish</a></p>
+             {% else %}
+            <a href="{% url 'login' %}" >Saytga kirish</a>
+            
+             {% endif %}
+        </div>
     <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
@@ -18,7 +26,8 @@
             </div>
             <div class="row">
                 <div class="col-1">
-                    <a class="btn btn-outline-dark mt-auto" href="#"> Expensive </a>
+                    
+                    <a class="btn btn-outline-dark mt-auto" href=""> Expensive </a>
                 </div>
 
                 <div class="col-1">
@@ -38,7 +47,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" 
+                            <img class="card-img-top"
                             src="{{ product.image.url }}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">

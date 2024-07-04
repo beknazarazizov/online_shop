@@ -19,7 +19,7 @@
                         </div>
                         <p class="lead">{{ product.description }}</p>
                         <div class="d-flex">
-                            <form method="post">
+                            <form method="post" action="{% url 'add_order' product.slug %}">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <h2>Place an order</h2>
@@ -53,16 +53,16 @@
 
         <div class="container mt-4 mb-4">
             <div class="row">
-                {% if comment_list %}
+                {% if comments %}
                 <div class="col-12">
                     <div class="text-center">
-                        <h2>Latest comments</h2>
+                        <h2>Latest comments({{ comments.count }})</h2>
                     </div>
-                    {% for com in comment_list %}
+                    {% for com in comments %}
 
                     <div class="media card p-4 mt-2">
                         <div class="media-body">
-                          <h3 class="mt-0">{{ com.name }}</h3>
+                          <h3 class="mt-0">{{ com.name }} ({{ com.created_at }})</h3>
                           {{ com.body }}
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <h3>Add Comment</h3>
                         </div>
                     
-                    <form method="post" action="">
+                    <form method="post" action="{% url 'add_comment' product.slug %}">
                         {% csrf_token %}
                         
                         <div class="form-group mb-3">
